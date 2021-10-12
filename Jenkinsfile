@@ -7,8 +7,7 @@ pipeline {
         timestamps()
     }
     parameters {
-        string(defaultValue: "https://github.com/leonardtia1/maven-project.git", description: 'supply a github repository', name: 'github')
-        string(defaultValue: "master", description: 'supply the branch for the docker image', name: 'branch')
+        string(defaultValue: "main", description: 'supply the branch for the docker image', name: 'branch')
         string(defaultValue: "develop", description: 'supply a tag ', name: 'tag')
     }
     environment {
