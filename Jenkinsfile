@@ -93,4 +93,33 @@ pipeline {
             }
         }
     }
+    post {
+        success {
+            slackSend baseUrl: 'https://hooks.slack.com/services/',
+            channel: 'pipeline-test', 
+            color: '#BDFFC3', 
+            message: 'Project Name : ' + JOB_NAME + ' \n Build Status : Build number ' + currentBuild.displayName + ' finished with status: SUCCESS ===> GOOD JOB GUYS! \n Description : ' + currentBuild.description + '\n Build URL : ' + BUILD_URL, 
+            teamDomain: 'Devops easy learning', 
+            tokenCredentialId: 'Slack-Token-For-Incoming-Webhooks'
+        }
+        failure {
+            slackSend baseUrl: 'https://hooks.slack.com/services/',
+            channel: 'pipeline-test', 
+            color: '#FF9FA1', 
+            message: 'Project Name : ' + JOB_NAME + ' \n Build Status : Build number ' + currentBuild.displayName + ' finished with status: FAILED ===> Please check the console output to fix this job IMMEDIATELY ===> THANKS. \n Description : ' + currentBuild.description + '\n Build URL : ' + BUILD_URL, 
+            teamDomain: 'Devops easy learning', 
+            tokenCredentialId: 'Slack-Token-For-Incoming-Webhooks'
+        }
+        unstable {
+            slackSend baseUrl: 'https://hooks.slack.com/services/',
+            channel: 'pipeline-test', 
+            color: '#FFFE89', 
+            message: 'Project Name : ' + JOB_NAME + ' \n Build Status : Build number ' + currentBuild.displayName + ' finished with status: UNSTABLE ===> Please check the console output to fix this job IMMEDIATELY ===> THANKS. \n Description : ' + currentBuild.description + '\n Build URL : ' + BUILD_URL, 
+            teamDomain: 'Devops easy learning', 
+            tokenCredentialId: 'Slack-Token-For-Incoming-Webhooks'
+        }
+        
+    }
+}
+
 }
