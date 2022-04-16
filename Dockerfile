@@ -1,4 +1,4 @@
-FROM tomcat-tia
+FROM tomcat
 RUN cd /usr/local/tomcat/webapps/ && rm -rf * 
 COPY webapp/target/*.war  /usr/local/tomcat/webapps 
 CMD "catalina.sh" "run"
